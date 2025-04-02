@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Recovery Techniques</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Database Recovery Techniques</h1>
+        <p>Database recovery techniques ensure that data remains consistent and available even after failures. Below are some key techniques:</p>
+        
+        <h2>1. Log-Based Recovery</h2>
+        <p>Uses transaction logs to restore data after crashes.</p>
+        <p>Log-based recovery is a technique used in database management systems (DBMS) to ensure data integrity and consistency after a failure.<br> This method relies on maintaining a log file that records all database transactions before they are committed. In case of a crash or failure, the system uses these logs to restore the database to a consistent state.
+
+            <h2>  <b>1. Types of Logging in DBMS</b><br></h2>
+            Log-based recovery involves storing logs that help in rolling back uncommitted transactions or redoing committed ones. The common types of logging include:<br>
+            
+            Redo Logging (Deferred Update)<br>
+            
+            Changes are recorded in the log before they are written to the database.<br>
+            
+            Transactions are not applied to the database until they are fully committed.<br>
+            
+            Recovery process involves redoing committed transactions from the log.<br>
+            
+            Undo Logging (Immediate Update)<br>
+            
+            Database updates occur immediately, but logs allow for rolling back changes if needed.<br>
+            
+            Uncommitted transactions can be undone using the recorded log entries.<br>
+            
+            Undo/Redo Logging (Combination Approach)<br>
+            
+            Logs contain both undo and redo information.<br>
+            
+            Allows for flexible recovery by rolling back uncommitted transactions and reapplying committed ones.<br>
+            
+            <h2> 2. Log-Based Recovery Process </h2>
+            The recovery process involves two main steps:<br>
+            
+            a) Undo Phase<br>
+            Used to roll back uncommitted transactions.<br>
+            
+            Transactions that started but were not completed before the crash are undone using the log.<br>
+            
+            b) Redo Phase<br>
+            Used to reapply committed transactions.<br>
+            
+            Ensures that all committed transactions are reflected in the database.<br>
+            
+        <b> 3. Checkpointing in Log-Based Recovery<br></b>
+            To optimize recovery, checkpoints are periodically created in the log. A checkpoint saves the current state of the database, reducing the amount of log that needs to be processed during recovery.<br>
+            
+            Consistent Checkpointing: Ensures that all transactions before a checkpoint are completed.<br>
+            
+            Fuzzy Checkpointing: Allows transactions to be active during checkpoint creation.<br>
+            
+          <b> 4. Advantages of Log-Based Recovery<br></b>
+            Ensures data consistency even after system failures.<br>
+            
+            Supports automatic recovery with minimal manual intervention.<br>
+            
+            Reduces data loss by recording every transaction.<br>
+            
+            Works efficiently with concurrent transactions.<br>
+     
+            
+            <img src="https://i.pinimg.com/736x/5f/cb/61/5fcb615da9713afd3909959453f9353a.jpg"width=300><BR>
+            <a href="https://www.scaler.com/topics/log-based-recovery-in-dbms/?utm_source=chatgpt.com">CHECK HERE FOR MORE INFORMATION</a><BR>
+            <b>  5. Limitations of Log-Based Recovery<br></b>
+            Storage overhead: Logs require additional storage space.<br>
+            
+            Performance impact: Writing logs before committing transactions may slow down operations.<br>
+            
+            Complex recovery: Managing redo and undo processes can be complex in large-scale systems.<br>
+            
+            </p>
+            <img src="https://scaler.com/topics/images/log-based-recovery-in-dbms-1.webp"width=500>
+        
+            <b>  <h2>2. Checkpointing</h2></b>
+        <p>Periodic saving of database states to speed up recovery.</p>
+        
+        <b>  <h2>3. Shadow Paging</h2></b>
+        <p>Maintains a copy of the data to recover from failures.</p>
+        
+        <b>  <h2>4. Backup and Restore</h2></b>
+        <p>Regular backups ensure data can be restored if lost.</p>
+
+        
+        <div class="quiz">
+            <b> <h2>Quick Quiz</h2></b>
+            <p>Which technique keeps a separate copy of pages to recover from failures?</p>
+            <button onclick="checkAnswer('Shadow Paging')">Shadow Paging</button>
+            <button onclick="checkAnswer('Checkpointing')">Checkpointing</button>
+            <p id="result"></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
